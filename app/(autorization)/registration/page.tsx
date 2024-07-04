@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 const Registration: React.FC = () => {
   const [name, setName] = useState<string>('');
@@ -14,6 +15,11 @@ const Registration: React.FC = () => {
   const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(e.target.value);
   };
+
+  const [clue, setClue] = useState<string>('Введите логин и пароль');
+
+  const routeToLogin = useRouter();
+
   const Registr = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const registrationData: object = {
@@ -32,11 +38,21 @@ const Registration: React.FC = () => {
 
       if (!response.ok) {
         const errorData = await response.json();
-        throw new Error(errorData.error || 'Something went wrong');
+        if (response.status === 400) {
+          setClue(errorData.error || 'Некорректные данные');
+        } else {
+          console.log(
+            'Ошибка отправки fetch запроса: ' + errorData.error ||
+              'Something went wrong'
+          );
+        }
+        return;
       }
 
       const data = await response.json();
       console.log(data.message);
+      setClue('Регистрация успешна');
+      routeToLogin.push('/login');
     } catch (error) {
       console.log('Ошибка отправки fetch запроса: ' + error);
     }
@@ -45,13 +61,15 @@ const Registration: React.FC = () => {
   return (
     <div>
       <h1>Регистрация</h1>
+
       <form onSubmit={Registr}>
         <div>
-          <label>Введите имя</label>
+          <p>{clue}</p>
+          <label>Имя пользователя:</label>
           <input type="text" value={name} onChange={handleUsernameChange} />
         </div>
         <div>
-          <label>Введите пароль</label>
+          <label>Пароль</label>
           <input
             type="password"
             value={password}

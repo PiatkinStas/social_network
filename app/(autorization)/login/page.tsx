@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import { useState } from 'react';
 
@@ -11,8 +13,17 @@ const Login: React.FC = () => {
     setPassword(e.target.value);
   };
 
-  const autorization = (e: React.FormEvent<HTMLFormElement>) => {
+  const autorization = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    try {
+      const response = await fetch('/api/login', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+    } catch (error) {}
   };
   return (
     <div>
