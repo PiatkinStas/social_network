@@ -28,8 +28,8 @@ export async function POST(req: NextRequest) {
     );
   }
   try {
-    // const password = await bcrypt.hash(password, 10);
-    const newUser = new User({ name, password });
+    const hash_password = await bcrypt.hash(password, 10);
+    const newUser = new User({ name, hash_password });
     await newUser.save();
     return NextResponse.json({ message: 'User registered successfully' });
   } catch (error) {

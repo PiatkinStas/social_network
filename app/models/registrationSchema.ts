@@ -2,7 +2,7 @@ import mongoose, { Schema, Document, Model } from 'mongoose';
 
 interface IUser extends Document {
   name: string;
-  password: string;
+  hash_password: string;
 }
 
 const userSchema: Schema<IUser> = new mongoose.Schema({
@@ -11,7 +11,7 @@ const userSchema: Schema<IUser> = new mongoose.Schema({
     required: true,
     unique: true,
   },
-  password: {
+  hash_password: {
     type: String,
     required: true,
   },
