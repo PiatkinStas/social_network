@@ -1,9 +1,5 @@
 import mongoose, { Schema, Document, Model } from 'mongoose';
-
-interface IUser extends Document {
-  name: string;
-  hash_password: string;
-}
+import { IUser } from './user_interface';
 
 const userSchema: Schema<IUser> = new mongoose.Schema({
   name: {
@@ -14,6 +10,14 @@ const userSchema: Schema<IUser> = new mongoose.Schema({
   hash_password: {
     type: String,
     required: true,
+  },
+  avatarUrl: {
+    type: String, // Убедитесь, что это свойство определено
+    default: '', // Можно установить значение по умолчанию
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now,
   },
 });
 
