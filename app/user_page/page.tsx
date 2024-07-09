@@ -3,9 +3,6 @@ import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import AboutUser from '../components/About_user';
 import ExitButton from '../components/Exit_button';
-import FriendsButton from '../components/Friends_button';
-import NavBar from '../components/Nav_bar';
-import UserAvatar from '../components/User_avatar';
 import Wall from '../components/Wall';
 
 export default function UserPage() {
@@ -46,10 +43,7 @@ export default function UserPage() {
     <div>
       <AboutUser user={user} />
       <ExitButton />
-      <FriendsButton />
-      <NavBar />
-      <UserAvatar user={user} />
-      <Wall />
+      <Wall user={user} />
     </div>
   );
 }

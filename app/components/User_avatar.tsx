@@ -24,6 +24,7 @@ const UserAvatar: React.FC<UserAvatarProps> = ({ user }) => {
 
     const formData = new FormData();
     formData.append('avatar', file);
+    formData.append('userId', user._id.toString()); // Добавляем ID пользователя
 
     try {
       const response = await fetch('/api/user_page/user_avatar', {

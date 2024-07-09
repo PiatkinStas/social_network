@@ -1,5 +1,9 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
+import { createRouter } from 'next-connect';
+import multer from 'multer';
+
+const router = createRouter();
 
 export const config = {
   api: {
