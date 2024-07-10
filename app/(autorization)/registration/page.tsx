@@ -3,6 +3,7 @@
 import React from 'react';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import styles from '@/app/(autorization)/registration/registration.module.css';
 
 const Registration: React.FC = () => {
   const [name, setName] = useState<string>('');
@@ -59,24 +60,32 @@ const Registration: React.FC = () => {
   };
 
   return (
-    <div>
-      <h1>Регистрация</h1>
+    <div className={styles.container}>
+      <h1 className={styles.heading}>Регистрация</h1>
 
-      <form onSubmit={Registr}>
-        <div>
-          <p>{clue}</p>
-          <label>Имя пользователя:</label>
-          <input type="text" value={name} onChange={handleUsernameChange} />
+      <form onSubmit={Registr} className={styles.form}>
+        <div className={styles.formGroup}>
+          <p className={styles.clue}>{clue}</p>
+          <label className={styles.label}>Имя пользователя:</label>
+          <input
+            type="text"
+            value={name}
+            onChange={handleUsernameChange}
+            className={styles.input}
+          />
         </div>
-        <div>
-          <label>Пароль</label>
+        <div className={styles.formGroup}>
+          <label className={styles.label}>Пароль</label>
           <input
             type="password"
             value={password}
             onChange={handlePasswordChange}
+            className={styles.input}
           />
         </div>
-        <button type="submit">Зарегистрироваться</button>
+        <button type="submit" className={styles.button}>
+          Зарегистрироваться
+        </button>
       </form>
     </div>
   );

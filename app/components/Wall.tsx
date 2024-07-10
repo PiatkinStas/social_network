@@ -1,6 +1,7 @@
 import React, { useState, ChangeEvent } from 'react';
 import PostsWall from './Posts';
 import { IUser } from '../models/user_interface';
+import styles from '@/app/components/Wall.module.css';
 interface WallProps {
   user: IUser;
 }
@@ -41,17 +42,20 @@ const Wall: React.FC<WallProps> = ({ user }) => {
   };
 
   return (
-    <div>
+    <div className={styles.container}>
       <div>
-        <h2>Стена</h2>
+        <h2 className={styles.heading}>Стена</h2>
         <textarea
           value={post}
           onChange={handlePostChange}
           placeholder="Напишите что-нибудь..."
+          className={styles.textarea}
         />
-        <button onClick={handlePostSubmit}>Разместить пост</button>
-        {error && <p style={{ color: 'red' }}>{error}</p>}
-        {success && <p style={{ color: 'green' }}>{success}</p>}
+        <button onClick={handlePostSubmit} className={styles.button}>
+          Разместить пост
+        </button>
+        {error && <p className={styles.error}>{error}</p>}
+        {success && <p className={styles.success}>{success}</p>}
       </div>
       <PostsWall />
     </div>

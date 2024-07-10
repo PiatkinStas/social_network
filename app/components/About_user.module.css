@@ -1,0 +1,38 @@
+.container {
+  margin: 20px;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  background-color: #f9f9f9;
+}
+
+.heading {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.info {
+  margin-bottom: 10px;
+}
+
+.inputField {
+  margin-left: 10px;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.button {
+  margin-top: 15px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #4caf50;
+  color: white;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: #45a049;
+}

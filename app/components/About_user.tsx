@@ -1,6 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import { IUser } from '../models/user_interface';
+import styles from '@/app/components/About_user.module.css';
 
 interface AboutUserProps {
   user: IUser;
@@ -54,66 +55,77 @@ const AboutUser: React.FC<AboutUserProps> = ({ user }) => {
   };
 
   return (
-    <div>
-      <h2>Информация о пользователе</h2>
-      <p>ID: {user._id.toString()}</p>
+    <div className={styles.container}>
+      <h2 className={styles.heading}>Информация о пользователе</h2>
+      <p className={styles.info}>ID: {user._id.toString()}</p>
       {isEditing ? (
         <div>
-          <p>
-            Имя:{' '}
+          <p className={styles.info}>
+            Имя:
             <input
               type="text"
               name="firstName"
               value={editedUser.firstName}
               onChange={handleChange}
+              className={styles.inputField}
             />
           </p>
-          <p>
-            Фамилия:{' '}
+          <p className={styles.info}>
+            Фамилия:
             <input
               type="text"
               name="lastName"
               value={editedUser.lastName}
               onChange={handleChange}
+              className={styles.inputField}
             />
           </p>
-          <p>
-            Год рождения:{' '}
+          <p className={styles.info}>
+            Год рождения:
             <input
               type="text"
               name="birthYear"
               value={editedUser.birthYear}
               onChange={handleChange}
+              className={styles.inputField}
             />
           </p>
-          <p>
-            Страна:{' '}
+          <p className={styles.info}>
+            Страна:
             <input
               type="text"
               name="country"
               value={editedUser.country}
               onChange={handleChange}
+              className={styles.inputField}
             />
           </p>
-          <p>
-            Город:{' '}
+          <p className={styles.info}>
+            Город:
             <input
               type="text"
               name="city"
               value={editedUser.city}
               onChange={handleChange}
+              className={styles.inputField}
             />
           </p>
-          <button onClick={handleSubmit}>Отправить</button>
+          <button onClick={handleSubmit} className={styles.button}>
+            Отправить
+          </button>
         </div>
       ) : (
         <div>
-          <p>Имя: {user.about_user.firstName}</p>
-          <p>Фамилия: {user.about_user.lastName}</p>
-          <p>Год рождения: {user.about_user.birthYear}</p>
-          <p>Страна: {user.about_user.country}</p>
-          <p>Город: {user.about_user.city}</p>
-          <button onClick={handleEdit}>Редактировать</button>
+          <p className={styles.info}>Имя: {user.about_user.firstName}</p>
+          <p className={styles.info}>Фамилия: {user.about_user.lastName}</p>
+          <p className={styles.info}>
+            Год рождения: {user.about_user.birthYear}
+          </p>
+          <p className={styles.info}>Страна: {user.about_user.country}</p>
+          <p className={styles.info}>Город: {user.about_user.city}</p>
+          <button onClick={handleEdit} className={styles.button}>
+            Редактировать
+          </button>
         </div>
       )}
     </div>

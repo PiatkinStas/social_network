@@ -3,6 +3,7 @@
 import React from 'react';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import styles from '@/app/(autorization)/login/login.module.css';
 
 const Login: React.FC = () => {
   const routeToUserPage = useRouter();
@@ -53,20 +54,31 @@ const Login: React.FC = () => {
     }
   };
   return (
-    <div>
-      <h1>Вход</h1>
-      <form onSubmit={autorization}>
-        <p>{clue}</p>
-        <div>
-          <label>Введите имя</label>
-          <input type="text" value={login} onChange={handleLogin} />
+    <div className={styles.container}>
+      <h1 className={styles.heading}>Вход</h1>
+      <form onSubmit={autorization} className={styles.form}>
+        <p className={styles.clue}>{clue}</p>
+        <div className={styles.formGroup}>
+          <label className={styles.label}>Введите имя</label>
+          <input
+            type="text"
+            value={login}
+            onChange={handleLogin}
+            className={styles.input}
+          />
         </div>
-        <div>
-          <label>Введите пароль</label>
-          <input type="password" value={password} onChange={handlePassword} />
+        <div className={styles.formGroup}>
+          <label className={styles.label}>Введите пароль</label>
+          <input
+            type="password"
+            value={password}
+            onChange={handlePassword}
+            className={styles.input}
+          />
         </div>
-
-        <button type="submit">Войти</button>
+        <button type="submit" className={styles.button}>
+          Войти
+        </button>
       </form>
     </div>
   );
