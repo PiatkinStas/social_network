@@ -8,7 +8,11 @@ interface Post {
   userId: string;
 }
 
-const PostsWall = () => {
+interface PostsWallProps {
+  userId: string;
+}
+
+const PostsWall: React.FC<PostsWallProps> = ({ userId }) => {
   const [posts, setPosts] = useState<Post[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -16,7 +20,9 @@ const PostsWall = () => {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const response = await fetch('/api/user_page/get_posts');
+        const response = await fetch(
+          `/api/user_page/get_posts?userId=${userId}`
+        );
         if (!response.ok) {
           throw new Error('Failed to fetch posts');
         }
@@ -35,7 +41,7 @@ const PostsWall = () => {
     };
 
     fetchPosts();
-  }, []);
+  }, [userId]);
 
   if (loading) {
     return <div>Loading...</div>;

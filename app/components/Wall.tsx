@@ -2,6 +2,7 @@ import React, { useState, ChangeEvent } from 'react';
 import PostsWall from './Posts';
 import { IUser } from '../models/user_interface';
 import styles from '@/app/components/Wall.module.css';
+
 interface WallProps {
   user: IUser;
 }
@@ -10,6 +11,7 @@ const Wall: React.FC<WallProps> = ({ user }) => {
   const [post, setPost] = useState('');
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
+
   const handlePostChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
     setPost(event.target.value);
   };
@@ -21,7 +23,7 @@ const Wall: React.FC<WallProps> = ({ user }) => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ post, userId: user._id }),
+        body: JSON.stringify({ post, userId: user._id.toString() }), // Преобразование в строку
       });
 
       if (response.ok) {
@@ -57,7 +59,7 @@ const Wall: React.FC<WallProps> = ({ user }) => {
         {error && <p className={styles.error}>{error}</p>}
         {success && <p className={styles.success}>{success}</p>}
       </div>
-      <PostsWall />
+      <PostsWall userId={user._id.toString()} /> {/* Преобразование в строку */}
     </div>
   );
 };

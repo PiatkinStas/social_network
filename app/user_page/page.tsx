@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import AboutUser from '../components/About_user';
-import ExitButton from '../components/Exit_button';
+import NavBar from '../components/Nav_bar';
 import Wall from '../components/Wall';
 
 export default function UserPage() {
@@ -41,8 +41,8 @@ export default function UserPage() {
 
   return (
     <div>
+      <NavBar />
       <AboutUser user={user} />
-      <ExitButton />
       <Wall user={user} />
     </div>
   );

@@ -1,11 +1,11 @@
 import React from 'react';
-import FriendsButton from './Friends_button';
+import ExitButton from './Exit_button';
+import styles from '@/app/components/Nav_bar.module.css';
 
 const NavBar = () => {
   return (
-    <div>
-      <p>боковая панель</p>
-      <FriendsButton />
+    <div className={styles.nav}>
+      <ExitButton />
     </div>
   );
 };
